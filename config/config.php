@@ -16,7 +16,7 @@ return [
 
     /**
      * The driver to be used for converting text-to-speech
-     * You can choose polly, or null as of now.
+     * You can choose polly, sixtydb, or null.
      */
     'driver' => env('TTS_DRIVER', 'polly'),
 
@@ -67,6 +67,12 @@ return [
     ],
 
     'services' => [
+        'sixtydb' => [
+            'api_key' => env('SIXTYDB_API_KEY', ''),
+            'voice_id' => env('SIXTYDB_VOICE_ID', ''),
+            'model_id' => env('SIXTYDB_MODEL_ID'),
+            'speed' => 1.0,
+        ],
         'polly' => [
             /**
              * Voice ID to use for the synthesis.
