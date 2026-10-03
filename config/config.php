@@ -61,8 +61,8 @@ return [
      * @see \Cion\TextToSpeech\Contracts\Source
      */
     'sources' => [
-        'text'    => \Cion\TextToSpeech\Sources\TextSource::class,
-        'path'    => \Cion\TextToSpeech\Sources\PathSource::class,
+        'text' => \Cion\TextToSpeech\Sources\TextSource::class,
+        'path' => \Cion\TextToSpeech\Sources\PathSource::class,
         'website' => \Cion\TextToSpeech\Sources\WebsiteSource::class,
     ],
 
@@ -100,9 +100,9 @@ return [
              * IAM Credentials from AWS.
              */
             'credentials' => [
-                'key'     => env('AWS_ACCESS_KEY_ID', ''),
-                'secret'  => env('AWS_SECRET_ACCESS_KEY', ''),
-                'token'   => env('AWS_SESSION_TOKEN', ''),
+                'key' => env('AWS_ACCESS_KEY_ID', ''),
+                'secret' => env('AWS_SECRET_ACCESS_KEY', ''),
+                'token' => env('AWS_SESSION_TOKEN', ''),
             ],
 
             'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),

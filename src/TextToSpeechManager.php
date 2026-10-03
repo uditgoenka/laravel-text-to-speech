@@ -54,8 +54,8 @@ class TextToSpeechManager extends Manager
     protected function setPollyClient(array $config, Credentials $credentials)
     {
         return new PollyClient([
-            'version'     => $config['version'],
-            'region'      => $config['region'],
+            'version' => $config['version'],
+            'region' => $config['region'],
             'credentials' => $credentials,
         ]);
     }

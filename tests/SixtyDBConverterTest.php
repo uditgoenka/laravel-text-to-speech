@@ -140,7 +140,8 @@ class SixtyDBConverterTest extends TestCase
 
     public function testStorageFailureDoesNotReturnASuccessPath(): void
     {
-        $this->container->instance('filesystem', new class {
+        $this->container->instance('filesystem', new class
+        {
             public function disk($name)
             {
                 return $this;
