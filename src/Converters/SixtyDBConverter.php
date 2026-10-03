@@ -108,6 +108,7 @@ class SixtyDBConverter implements Converter
             if (! Storage::disk($this->disk ?: config('tts.disk'))->put($this->path, $wav)) {
                 throw new RuntimeException('Could not store 60db audio.');
             }
+
             return $this->path;
         } catch (\JsonException $error) {
             throw new RuntimeException('60db returned invalid JSON.', 0, $error);
@@ -148,6 +149,7 @@ class SixtyDBConverter implements Converter
             throw new RuntimeException('60db returned invalid base64 audio.');
         }
         $nested = substr($audio, 0, 1) === '{' ? json_decode($audio, true, 32) : null;
+
         return is_array($nested) ? $this->decode($nested, $depth + 1) : $this->pcm($audio);
     }
 
@@ -157,6 +159,7 @@ class SixtyDBConverter implements Converter
             if (in_array(substr($audio, 0, 4), ['OggS', 'fLaC'], true) || substr($audio, 0, 3) === 'ID3') {
                 throw new RuntimeException('60db returned compressed audio instead of PCM16.');
             }
+
             return $audio;
         }
         if (strlen($audio) < 12 || substr($audio, 8, 4) !== 'WAVE' || unpack('Vsize', substr($audio, 4, 4))['size'] !== strlen($audio) - 8) {
@@ -182,6 +185,7 @@ class SixtyDBConverter implements Converter
         if ($offset !== strlen($audio) || ! $validFormat) {
             throw new RuntimeException('60db WAV must be mono PCM16 at 24000 Hz.');
         }
+
         return $pcm;
     }
 

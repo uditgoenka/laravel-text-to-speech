@@ -58,6 +58,7 @@ class SixtyDBConverterTest extends TestCase
     {
         $stack = HandlerStack::create(new MockHandler([new Response($status, ['Content-Type' => $type], $body)]));
         $stack->push(Middleware::history($this->history));
+
         return (new SixtyDBConverter(new Client(['handler' => $stack]), ['api_key' => 'test', 'voice_id' => 'workspace-voice']))->saveTo('speech.wav');
     }
 
@@ -140,8 +141,15 @@ class SixtyDBConverterTest extends TestCase
     public function testStorageFailureDoesNotReturnASuccessPath(): void
     {
         $this->container->instance('filesystem', new class {
-            public function disk($name) { return $this; }
-            public function put($path, $bytes) { return false; }
+            public function disk($name)
+            {
+                return $this;
+            }
+
+            public function put($path, $bytes)
+            {
+                return false;
+            }
         });
         Facade::clearResolvedInstances();
         $this->expectException(\RuntimeException::class);

@@ -7,8 +7,8 @@ use Aws\Polly\PollyClient;
 use Cion\TextToSpeech\Converters\NullConverter;
 use Cion\TextToSpeech\Converters\PollyConverter;
 use Cion\TextToSpeech\Converters\SixtyDBConverter;
-use GuzzleHttp\Client;
 use Exception;
+use GuzzleHttp\Client;
 use Illuminate\Support\Manager;
 
 class TextToSpeechManager extends Manager
